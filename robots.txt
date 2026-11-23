@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://therealtenkoshi2020.github.io/vulpes-ignis-site/sitemap.xml

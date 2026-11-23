@@ -21,7 +21,7 @@ export const GUIDANCE_TOPICS = Object.freeze([
   },
   {
     id:'desire', label:'Different levels of desire',
-    cue:/\b(desire|libido|sex drive|sexual interest|want more sex|want less sex|desire mismatch|different sex drives)\b/i,
+    cue:/\b(desire|libido|sex drive|sexual interest|want more sex|want less sex|desire mismatch|different sex drives|(?:never|rarely|doesn'?t|does not|don'?t) wants? sex)\b/i,
     context:/\b(partner|different|mismatch|pressure|sex|intimacy|want|relationship)\b/i,
     summary:'Differences in desire are not a debt or a diagnosis. Both people can have real feelings without anyone owing sexual activity.',
     action:'Ask what each of you means by intimacy today. Consider options for connection with no expectation that they lead to sex.',
@@ -48,8 +48,8 @@ export const GUIDANCE_TOPICS = Object.freeze([
   },
   {
     id:'performance', label:'Sexual performance pressure',
-    cue:/\b(performance|erection|erectile|ejaculat\w*|climax|orgasm|finishing|finish too fast|anxiety)\b/i,
-    context:/\b(sex|sexual|intimacy|partner|bed|pressure|desire|arousal|erection)\b/i,
+    cue:/\b(performance|erection|erectile|ejaculat\w*|climax|orgasm|finishing|finish too fast|anxiety|(?:get|stay|staying|keep) hard)\b/i,
+    context:/\b(sex|sexual|intimacy|partner|bed|pressure|desire|arousal|erection|(?:get|stay|staying|keep) hard)\b/i,
     needsContext:true,
     summary:'Worry about a particular sexual outcome can make connection feel like a test. A person’s worth is not measured by a physical response.',
     action:'Consider setting aside a moment of connection without a target outcome. If a physical change is persistent or concerning, consider discussing it with a qualified clinician.',
@@ -58,8 +58,8 @@ export const GUIDANCE_TOPICS = Object.freeze([
   },
   {
     id:'confidence', label:'Body confidence and self-judgment',
-    cue:/\b(insecure|confidence|self-esteem|body image|ashamed|embarrassed|appearance|look unattractive|compare my body)\b/i,
-    context:/\b(body|sex|intimacy|partner|feel|attractive|performance|appearance)\b/i,
+    cue:/\b(insecure|confidence|self-esteem|body image|ashamed|embarrassed|appearance|look unattractive|compare my body|nervous|first time)\b/i,
+    context:/\b(body|sex|intimacy|partner|feel|attractive|performance|appearance|first time)\b/i,
     summary:'Noticing your body is different from judging it. Confidence does not require liking everything about how you look or feel.',
     action:'Identify one expectation you have been measuring yourself against, and choose a more neutral question about comfort or curiosity.',
     starter:'I have been feeling self-conscious, and I would appreciate a little patience while I figure out what feels comfortable for me.',
@@ -67,8 +67,8 @@ export const GUIDANCE_TOPICS = Object.freeze([
   },
   {
     id:'sti', label:'STI conversations and testing',
-    cue:/\b(sti|std|sexually transmitted|sexual health screening|condoms?|testing for infection)\b/i,
-    context:/\b(partner|test|sex|screening|exposure|prevention|talk|protection)\b/i,
+    cue:/\b(stis?|stds?|sexually transmitted|sexual health screening|condoms?|testing for infection|chlamydia|gonorrh\w*|syphilis|herpes|hpv|hiv)\b/i,
+    context:/\b(partner|test|tested|testing|positive|sex|screening|exposure|prevention|talk|protection)\b/i,
     summary:'Talking about STI testing and protection is a shared health conversation, not an accusation or an assumption about anyone’s history.',
     action:'Ask what each person knows about their testing and protection preferences. For testing schedules or exposure concerns, rely on a qualified clinician or current public-health guidance.',
     starter:'I want us to feel informed and comfortable. Can we talk about testing, protection, and what we each need to feel ready?',
@@ -87,7 +87,7 @@ export const GUIDANCE_TOPICS = Object.freeze([
   {
     id:'dynamics', label:'Exploring consensual dynamics',
     cue:/\b(kink|bdsm|dominant|submissive|power exchange|roleplay|switching roles|bondage|dynamic)\b/i,
-    context:/\b(partner|curious|explore|consent|boundary|role|sex|relationship)\b/i,
+    context:/\b(partner|curious|explore|consent|boundary|role|sex|relationship|try|trying|we|us)\b/i,
     summary:'Curiosity about roles or power dynamics is a conversation, not an obligation. Consent, autonomy, and the ability to stop remain essential.',
     action:'Describe what interests you without presuming interest from anyone else. Discuss boundaries and expectations before deciding whether to explore anything.',
     starter:'There is a kind of dynamic I am curious about. Would you be comfortable talking about it as an idea, without any pressure to try it?',
@@ -126,7 +126,7 @@ const REFLECTIONS={
  products:'What comfort, material, or hygiene question matters most?'
 };
 const SAFETY_LANGUAGE=/\b(suicid\w*|kill myself|end my life|self[- ]?harm|sexual assault|raped|rape|threaten(?:ed|ing)? to (?:hurt|kill)|afraid for my safety|being forced to have sex|forced into sex|partner (?:hit|hits|hurt|hurts) me)\b/i;
-const UNRELATED=/\b(at work|performance review|my boss|coworker|manager|office job|wifi|internet connection|train station|software|javascript)\b/i;
+const UNRELATED=/\b(at work|performance review|my boss|coworker|manager|office job|new job|job interview|wifi|internet connection|train station|software|javascript)\b/i;
 const ADULT_CONTEXT=/\b(partner|spouse|husband|wife|boyfriend|girlfriend|relationship|intimacy|affection|closeness|sex|sexual|consent|boundary|bdsm|kink|sti|std|genital|my body)\b/i;
 const blank=(message=UNCERTAIN.summary)=>({
  matched:false,safety:false,id:null,label:'No reliable topic match',summary:message,

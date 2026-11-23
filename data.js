@@ -1,3 +1,5 @@
+import { PUBLISHED_GUIDES_03 } from './published-guides-03.js';
+import { PUBLISHED_GUIDES_02 } from './published-guides-02.js';
 import { PUBLISHED_GUIDES } from './published-guides.js';
 export const CATEGORIES=['All topics','Education','Relationship tips','Spicy articles','Sexual fitness','Ask a Coach'];
 const article=(id,title,category,art,excerpt,body,practice,tool='conversation',sources=[])=>({id,title,category,art,excerpt,body,practice,tool,sources});
@@ -67,7 +69,9 @@ export const ARTICLES=[
  <h2 id="bring">Bring what you know</h2><p>Useful notes can include what changed, when you noticed it, how often it happens, any discomfort, and what you want to understand. You do not have to know the cause before asking for help.</p><p>Health conditions and medicines can be relevant to some sexual concerns. Ask your clinician whether anything in your health history or prescriptions may matter. Keep medication decisions with the prescriber.</p>
  <h2 id="questions">Ask about the process</h2><ul><li>What could help us understand this?</li><li>What are the benefits and limits of the next step?</li><li>Are there other options?</li><li>When should I come back or seek more immediate care?</li></ul><p>You can ask a clinician to explain an examination or proposed treatment before you decide. Tell them what would help you feel informed.</p>
  <h2 id="role">Choose the right kind of support</h2><p>Coaching and general education do not replace medical assessment or licensed mental-health care. A clinician can assess symptoms; a qualified counselor may help with emotional or relationship concerns. You can ask about qualifications, scope, fees, and confidentiality.</p><p>Vulpes Ignis is an educational space. Its assessment suggests learning resources and does not diagnose a condition or evaluate an emergency.</p>`, 'Build a short care note with what changed, what you notice, and the question you want answered. Download it only if you want to keep a copy.','care',[{name:'NIDDK · Causes of erection difficulties',url:'https://www.niddk.nih.gov/health-information/urologic-diseases/erectile-dysfunction/symptoms-causes'},{name:'ACOG · Pain during sex',url:'https://www.acog.org/womens-health/faqs/when-sex-is-painful'}]),
- ...PUBLISHED_GUIDES
+ ...PUBLISHED_GUIDES,
+ ...PUBLISHED_GUIDES_02,
+ ...PUBLISHED_GUIDES_03
 ];
 export const PROMPTS={
  gentle:['What has made you feel cared for lately?','What is one small thing you would like more of this week?','When do you feel most able to be yourself?','What kind of closeness feels welcome today?','What is something I might not realize you appreciate?','What would make an ordinary evening feel a little kinder?','Is there something you want me to understand without trying to fix it?','What is a good way for me to check in when you seem quiet?'],
