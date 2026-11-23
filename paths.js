@@ -10,7 +10,7 @@ export const PATHS = [
     steps: [
       { id: 'understand', title: 'Give the conversation a little room', description: 'Read a short guide to making a request that leaves room for an honest answer.', href: '/learn/talk-about-needs', action: 'Read the guide', kind: 'Read' },
       { id: 'open', title: 'Find one question that feels like you', description: 'Choose a conversation card. You can use it privately or invite a willing adult partner to join you.', href: '/tools/conversation', action: 'Open conversation cards', kind: 'Try' },
-      { id: 'checkin', title: 'Put one small request into words', description: 'Use the check-in builder to name what is present and one thing you would appreciate.', href: '/tools/check-in', action: 'Make a check-in note', kind: 'Reflect' }
+      { id: 'checkin', title: 'Put one small request into words', description: 'Use the ten-minute check-in to name what is present and one thing you would appreciate.', href: '/tools/check-in', action: 'Make a check-in note', kind: 'Reflect' }
     ]
   },
   {
@@ -39,7 +39,7 @@ export const PATHS = [
     time: 'About 10 minutes', icon: 'lock',
     steps: [
       { id: 'consent', title: 'Make room for a real choice', description: 'Read how check-ins and changing your mind fit into everyday consent.', href: '/learn/consent-in-practice', action: 'Read about consent', kind: 'Read' },
-      { id: 'wording', title: 'Try a boundary in your own words', description: 'The boundary builder gives your words a simple structure. Edit it until it sounds like you.', href: '/tools/boundaries', action: 'Open the boundary builder', kind: 'Try' },
+      { id: 'wording', title: 'Try a boundary in your own words', description: 'This tool gives your words a simple structure. Edit it until it sounds like you.', href: '/tools/boundaries', action: 'Find my boundary words', kind: 'Try' },
       { id: 'carry', title: 'Take your boundary into real life', description: 'Read about choosing an action you control and respecting another person’s answer.', href: '/learn/boundaries-are-an-invitation', action: 'Read the boundary guide', kind: 'Read' }
     ]
   },
@@ -49,7 +49,7 @@ export const PATHS = [
     time: 'About 10–15 minutes', icon: 'spark',
     steps: [
       { id: 'learn', title: 'Start with the conversation', description: 'Read about discussing adult relationship dynamics, choices, and boundaries before adopting a label.', href: '/learn/exploring-dynamics', action: 'Read the exploration guide', kind: 'Read' },
-      { id: 'reflect', title: 'Explore some language, if you want to', description: 'The optional adult-dynamics reflection offers vocabulary. Skip any statement, or leave the exercise entirely.', href: '/dynamics', action: 'Open the optional reflection', kind: 'Explore' },
+      { id: 'reflect', title: 'Explore some language, if you want to', description: 'The optional adult dynamics reflection offers vocabulary. Skip any statement, or leave the exercise entirely.', href: '/dynamics', action: 'Open the optional reflection', kind: 'Explore' },
       { id: 'keep', title: 'Keep what feels useful', description: 'Use a private reflection to notice what resonates and what you would rather leave alone.', href: '/tools/reflection', action: 'Reflect in my own words', kind: 'Reflect' }
     ]
   }

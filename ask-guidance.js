@@ -106,7 +106,7 @@ export const GUIDANCE_TOPICS = Object.freeze([
 export const GUIDANCE_CHOICES = Object.freeze(GUIDANCE_TOPICS.map(({id,label})=>Object.freeze({id,label})));
 const UNCERTAIN = Object.freeze({
   matched:false,id:null,label:'No reliable topic match',
-  summary:'I cannot reliably connect that question to a guide yet. This is not a chatbot, a people finder, or a general internet search. I do not want to guess or manufacture an answer.',
+  summary:'That question doesn’t match any of our topics yet. Ask Vulpes is not a chatbot or a search engine, so rather than guess, it leaves this one unanswered. Try choosing a topic instead.',
   action:'Choose a topic from the menu to see a relevant educational starting point, or browse the learning library. If this is about immediate danger, contact local emergency services.',
   starter:'',guides:[],tool:null
 });

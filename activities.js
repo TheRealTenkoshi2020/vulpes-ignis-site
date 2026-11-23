@@ -30,7 +30,7 @@ export const ACTIVITIES = {
         id: 'note',
         type: 'freetext',
         prompt: 'Optional: anything specific you want to include? (or leave blank)',
-        placeholder: 'For example: I have been feeling tired lately'
+        placeholder: 'For example: “I’ve been feeling tired lately.”'
       }
     ],
     generate: (input) => {

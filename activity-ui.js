@@ -6,7 +6,7 @@ const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'
 
 export function renderActivity(id, state) {
   const activity = getActivity(id);
-  if (!activity) return `<div class="wrap"><p>Activity not available.</p><a href="#/learn" class="text-link">Back to library</a></div>`;
+  if (!activity) return `<div class="wrap"><p>Activity not available.</p><a href="#/learn" class="text-link">Back to the library</a></div>`;
 
   const answers = state.activityAnswers || {};
   let html = `<div class="wrap section activity-page">
@@ -30,7 +30,7 @@ export function renderActivity(id, state) {
   });
 
   html += `<div class="button-row">
-      <button type="submit" class="button primary">Generate suggestion</button>
+      <button type="submit" class="button primary">Show me a suggestion</button>
       <button type="button" data-action="reset-activity" class="button subtle">Reset</button>
     </div></form>`;
 
@@ -45,7 +45,7 @@ export function renderActivity(id, state) {
       <div class="notice green-notice">
         Related: <a href="#/learn/different-desires">Return to the guide</a> ·
         <a href="#/paths/connection">Guided path: Feel a little closer</a> ·
-        <a href="#/my-space">My Space</a>
+        <a href="#/my-space">My space</a>
       </div>`;
   }
 
@@ -68,7 +68,7 @@ export function attachActivityHandlers(id, state, persist, toast, download, copy
         answers._generated = activity.generate(answers);
         state.activityAnswers = answers;
         persist();
-        toast('Suggestion generated. Edit it as needed.');
+        toast('Here’s a starting point. Make it sound like you.');
         rerender('#generated-text');
       }
     });
