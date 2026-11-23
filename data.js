@@ -1,4 +1,5 @@
 import { PUBLISHED_GUIDES_03 } from './published-guides-03.js';
+import { PUBLISHED_PLAYFUL_01 } from './published-playful-01.js';
 import { PUBLISHED_GUIDES_02 } from './published-guides-02.js';
 import { PUBLISHED_GUIDES } from './published-guides.js';
 export const CATEGORIES=['All topics','Education','Relationship tips','Spicy articles','Sexual fitness','Ask a Coach'];
@@ -71,7 +72,8 @@ export const ARTICLES=[
  <h2 id="role">Choose the right kind of support</h2><p>Coaching and general education do not replace medical assessment or licensed mental-health care. A clinician can assess symptoms; a qualified counselor may help with emotional or relationship concerns. You can ask about qualifications, scope, fees, and confidentiality.</p><p>Vulpes Ignis is an educational space. Its assessment suggests learning resources and does not diagnose a condition or evaluate an emergency.</p>`, 'Build a short care note with what changed, what you notice, and the question you want answered. Download it only if you want to keep a copy.','care',[{name:'NIDDK · Causes of erection difficulties',url:'https://www.niddk.nih.gov/health-information/urologic-diseases/erectile-dysfunction/symptoms-causes'},{name:'ACOG · Pain during sex',url:'https://www.acog.org/womens-health/faqs/when-sex-is-painful'}]),
  ...PUBLISHED_GUIDES,
  ...PUBLISHED_GUIDES_02,
- ...PUBLISHED_GUIDES_03
+ ...PUBLISHED_GUIDES_03,
+ ...PUBLISHED_PLAYFUL_01
 ];
 export const PROMPTS={
  gentle:['What has made you feel cared for lately?','What is one small thing you would like more of this week?','When do you feel most able to be yourself?','What kind of closeness feels welcome today?','What is something I might not realize you appreciate?','What would make an ordinary evening feel a little kinder?','Is there something you want me to understand without trying to fix it?','What is a good way for me to check in when you seem quiet?'],
