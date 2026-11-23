@@ -1,5 +1,6 @@
 import { PUBLISHED_GUIDES_03 } from './published-guides-03.js';
 import { PUBLISHED_PLAYFUL_01 } from './published-playful-01.js';
+import { PUBLISHED_PLAYFUL_02 } from './published-playful-02.js';
 import { PUBLISHED_GUIDES_02 } from './published-guides-02.js';
 import { PUBLISHED_GUIDES } from './published-guides.js';
 export const CATEGORIES=['All topics','Education','Relationship tips','Spicy articles','Sexual fitness','Ask a Coach'];
@@ -73,7 +74,8 @@ export const ARTICLES=[
  ...PUBLISHED_GUIDES,
  ...PUBLISHED_GUIDES_02,
  ...PUBLISHED_GUIDES_03,
- ...PUBLISHED_PLAYFUL_01
+ ...PUBLISHED_PLAYFUL_01,
+ ...PUBLISHED_PLAYFUL_02
 ];
 export const PROMPTS={
  gentle:['What has made you feel cared for lately?','What is one small thing you would like more of this week?','When do you feel most able to be yourself?','What kind of closeness feels welcome today?','What is something I might not realize you appreciate?','What would make an ordinary evening feel a little kinder?','Is there something you want me to understand without trying to fix it?','What is a good way for me to check in when you seem quiet?'],
