@@ -1,0 +1,129 @@
+// Deterministic, offline guidance based only on existing Vulpes Ignis educational guides.
+// This is keyword matching, not AI, personalized coaching, triage, or diagnosis.
+export const GUIDANCE_TOPICS = Object.freeze([
+  {
+    id:'communication', label:'Talking about something difficult',
+    cue:/\b(talk|communicat\w*|conversation|speak|tell (my|them|him|her)|bring (it|this) up|how (can|do) i say)\b/i,
+    context:/\b(partner|spouse|husband|wife|boyfriend|girlfriend|relationship|affection|closeness|intimacy|feelings|need)\b/i,
+    summary:'A difficult conversation is more manageable when it begins with one experience and an invitation, rather than a verdict about the other person.',
+    action:'Pick one specific thing you want them to understand. Ask whether this is a good time to talk, and leave room for their response.',
+    starter:'There is something about how we connect that I would like to talk through. Is now a good time? I would like to understand your side too.',
+    guides:['talk-about-needs','ten-minute-check-in'], tool:'conversation'
+  },
+  {
+    id:'connection', label:'Affection and feeling connected',
+    cue:/\b(affection|closeness|cuddles?|lonely|distant|disconnect\w*|quality time|feel closer|touch)\b/i,
+    context:/\b(want|need|more|less|miss|together|partner|feel|time)\b/i,
+    summary:'Closeness can mean different things: attention, conversation, affection, or touch. Naming the kind you miss is more useful than asking someone to guess.',
+    action:'Name one small, welcome form of connection and ask what would feel comfortable for each of you this week.',
+    starter:'I have been missing some of our smaller moments of closeness. Would you be open to finding one simple way to connect this week, without any expectation beyond that?',
+    guides:['ten-minute-check-in','talk-about-needs'], tool:'check-in'
+  },
+  {
+    id:'desire', label:'Different levels of desire',
+    cue:/\b(desire|libido|sex drive|sexual interest|want more sex|want less sex|desire mismatch|different sex drives)\b/i,
+    context:/\b(partner|different|mismatch|pressure|sex|intimacy|want|relationship)\b/i,
+    summary:'Differences in desire are not a debt or a diagnosis. Both people can have real feelings without anyone owing sexual activity.',
+    action:'Ask what each of you means by intimacy today. Consider options for connection with no expectation that they lead to sex.',
+    starter:'I care about us, and I notice we sometimes want different kinds of closeness. Could we talk about what feels welcome for each of us without deciding that anything has to happen?',
+    guides:['different-desires','consent-in-practice'], tool:'conversation'
+  },
+  {
+    id:'boundaries', label:'Boundaries and saying no',
+    cue:/\b(boundar\w*|say no|set limits|limits|uncomfortable|not comfortable|pressure|pressured|coerc\w*|respect my no)\b/i,
+    context:/\b(partner|touch|intimacy|consent|relationship|say|feel|stop|sexual)\b/i,
+    summary:'A boundary describes what you will or will not participate in. It does not require a debate, a justification, or someone else’s approval.',
+    action:'Write one clear limit and, if it is useful, one alternative that remains genuinely optional.',
+    starter:'I am not comfortable with that. I am happy to talk about what feels good for both of us, but I need this boundary to be respected.',
+    guides:['boundaries-are-an-invitation','consent-in-practice'], tool:'boundaries'
+  },
+  {
+    id:'consent', label:'Consent and checking in',
+    cue:/\b(consent|permission|safeword|safe word|check in during sex|withdraw consent)\b/i,
+    context:/\b(touch|sex|intimacy|stop|ask|partner|yes|no|comfortable)\b/i,
+    summary:'Consent needs to be freely chosen, specific to the moment, and changeable. Silence or a previous yes does not guarantee permission now.',
+    action:'Ask an open question about what is welcome, and make it easy to pause or change direction.',
+    starter:'Are you comfortable with this, or would you rather slow down or stop? Either answer is completely okay.',
+    guides:['consent-in-practice','boundaries-are-an-invitation'], tool:'boundaries'
+  },
+  {
+    id:'performance', label:'Sexual performance pressure',
+    cue:/\b(performance|erection|erectile|ejaculat\w*|climax|orgasm|finishing|finish too fast|anxiety)\b/i,
+    context:/\b(sex|sexual|intimacy|partner|bed|pressure|desire|arousal|erection)\b/i,
+    needsContext:true,
+    summary:'Worry about a particular sexual outcome can make connection feel like a test. A person’s worth is not measured by a physical response.',
+    action:'Consider setting aside a moment of connection without a target outcome. If a physical change is persistent or concerning, consider discussing it with a qualified clinician.',
+    starter:'I sometimes feel pressure to make everything go a certain way. Could we focus on what feels comfortable and connected instead of a specific outcome?',
+    guides:['performance-pressure','confidence-without-performance'], tool:'conversation'
+  },
+  {
+    id:'confidence', label:'Body confidence and self-judgment',
+    cue:/\b(insecure|confidence|self-esteem|body image|ashamed|embarrassed|appearance|look unattractive|compare my body)\b/i,
+    context:/\b(body|sex|intimacy|partner|feel|attractive|performance|appearance)\b/i,
+    summary:'Noticing your body is different from judging it. Confidence does not require liking everything about how you look or feel.',
+    action:'Identify one expectation you have been measuring yourself against, and choose a more neutral question about comfort or curiosity.',
+    starter:'I have been feeling self-conscious, and I would appreciate a little patience while I figure out what feels comfortable for me.',
+    guides:['body-curiosity','confidence-without-performance'], tool:'reflection'
+  },
+  {
+    id:'sti', label:'STI conversations and testing',
+    cue:/\b(sti|std|sexually transmitted|sexual health screening|condoms?|testing for infection)\b/i,
+    context:/\b(partner|test|sex|screening|exposure|prevention|talk|protection)\b/i,
+    summary:'Talking about STI testing and protection is a shared health conversation, not an accusation or an assumption about anyone’s history.',
+    action:'Ask what each person knows about their testing and protection preferences. For testing schedules or exposure concerns, rely on a qualified clinician or current public-health guidance.',
+    starter:'I want us to feel informed and comfortable. Can we talk about testing, protection, and what we each need to feel ready?',
+    guides:['sti-conversation','prepare-for-care'], tool:'care'
+  },
+  {
+    id:'health', label:'Pain, discomfort, and asking for care',
+    cue:/\b(pain|painful|hurts?|discomfort|bleeding|symptoms?|clinician|doctor|pelvic|genital|medication)\b/i,
+    context:/\b(sex|sexual|intimacy|body|partner|appointment|health|medical|vagina|penis|pelvic|genital)\b/i,
+    needsContext:true,
+    summary:'You do not need to identify a cause before asking for care. This tool cannot assess symptoms, diagnose conditions, or determine urgency.',
+    action:'Pause activities that hurt. Write down what you notice and when it occurs to discuss with a qualified healthcare professional. If you think you have an emergency, seek urgent local medical help.',
+    starter:'I have noticed a change or discomfort I would like to understand. Could we discuss what might need assessment and what questions I should ask?',
+    guides:['when-intimacy-hurts','prepare-for-care'], tool:'care'
+  },
+  {
+    id:'dynamics', label:'Exploring consensual dynamics',
+    cue:/\b(kink|bdsm|dominant|submissive|power exchange|roleplay|switching roles|bondage|dynamic)\b/i,
+    context:/\b(partner|curious|explore|consent|boundary|role|sex|relationship)\b/i,
+    summary:'Curiosity about roles or power dynamics is a conversation, not an obligation. Consent, autonomy, and the ability to stop remain essential.',
+    action:'Describe what interests you without presuming interest from anyone else. Discuss boundaries and expectations before deciding whether to explore anything.',
+    starter:'There is a kind of dynamic I am curious about. Would you be comfortable talking about it as an idea, without any pressure to try it?',
+    guides:['exploring-dynamics','consent-in-practice'], tool:'boundaries'
+  },
+  {
+    id:'products', label:'Choosing intimate products thoughtfully',
+    cue:/\b(toy|toys|lube|lubricant|intimacy product|sexual wellness product|sex product|device)\b/i,
+    context:/\b(comfort|sexual|intimacy|materials?|clean|safe|buy|use|choose|product|toy)\b/i,
+    summary:'Useful choices begin with personal comfort, materials, hygiene, and practical needs—not a promise that any product will solve a relationship or health issue.',
+    action:'Identify what you actually want the item to help with, then read reliable care and safety information before choosing.',
+    starter:'Before we buy anything, can we talk about what would feel comfortable and what we would actually want it to help with?',
+    guides:['thoughtful-product-choices','body-curiosity'], tool:'reflection'
+  }
+]);
+export const GUIDANCE_CHOICES = Object.freeze(GUIDANCE_TOPICS.map(({id,label})=>Object.freeze({id,label})));
+const UNCERTAIN = Object.freeze({
+  matched:false,id:null,label:'No reliable topic match',
+  summary:'I cannot reliably connect that question to a guide yet. This is not a chatbot, a people finder, or a general internet search. I do not want to guess or manufacture an answer.',
+  action:'Choose a topic from the menu to see a relevant educational starting point, or browse the learning library. If this is about immediate danger, contact local emergency services.',
+  starter:'',guides:[],tool:null
+});
+export function answerQuestion(question, selectedTopic='auto'){
+  const q=typeof question==='string'?question.trim().slice(0,1500):'';
+  const explicit=GUIDANCE_TOPICS.find(x=>x.id===selectedTopic);
+  if(!q && !explicit) return UNCERTAIN;
+  let topic=explicit||null;
+  if(!topic){
+    const candidates=GUIDANCE_TOPICS.map(item=>{
+      const match=item.cue.test(q);
+      const context=item.context.test(q);
+      return {item,score:match?(3+(context?2:0)):0,context};
+    }).filter(x=>x.score>=3&&(!x.item.needsContext||x.context));
+    candidates.sort((a,b)=>b.score-a.score);
+    topic=candidates[0]?.item||null;
+  }
+  if(!topic)return UNCERTAIN;
+  return {matched:true,id:topic.id,label:topic.label,summary:topic.summary,action:topic.action,starter:topic.starter,guides:[...topic.guides],tool:topic.tool,selectedManually:!!explicit};
+}

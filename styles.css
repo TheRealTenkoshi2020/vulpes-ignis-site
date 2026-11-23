@@ -239,3 +239,21 @@ main[tabindex]:focus-visible{outline:none}
 .section-citations{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:-6px;margin-bottom:25px}
 .citation-link{display:inline-flex;align-items:center;justify-content:center;min-width:28px;min-height:28px;padding:2px 5px;border-radius:4px;text-underline-offset:3px}
 .citation-link:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+
+/* Stage 1: deterministic Ask Vulpes guidance */
+.guidance-panel{max-width:830px;margin:16px auto 60px}
+.guidance-panel h2{font-size:clamp(1.8rem,4vw,2.45rem)}
+.guidance-panel textarea{min-height:135px}
+.guidance-panel select{min-height:50px;cursor:pointer}
+.guidance-explain{font-size:.82rem;line-height:1.7;color:var(--muted);margin-bottom:22px}
+.guidance-choices{font-size:.81rem;color:var(--muted);margin:5px 0 22px}
+.guidance-result{margin-top:32px;padding:24px;border:1px solid #67774f;border-radius:5px;background:var(--raised);scroll-margin-top:80px;outline-offset:5px}
+.guidance-result h3{font-size:clamp(1.45rem,4vw,1.9rem);font-family:var(--serif);margin:6px 0 14px}
+.guidance-result .eyebrow{margin:20px 0 7px}
+.guidance-result p{line-height:1.7}
+.guidance-suggested{border-left:2px solid var(--green);margin:16px 0;padding:14px 18px;background:var(--surface);font-family:var(--serif);font-size:1.1rem;color:var(--text)}
+.guidance-related{margin:20px 0;padding-left:20px;line-height:2}
+.guidance-related a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+.guidance-actions{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.guidance-disclaimer{color:var(--muted);font-size:.76rem;line-height:1.6;margin-top:18px}
+@media(max-width:600px){.guidance-panel{padding:22px 17px}.guidance-result{padding:17px 15px}.guidance-actions .button{width:100%}}
