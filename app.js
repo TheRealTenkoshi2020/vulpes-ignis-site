@@ -35,7 +35,7 @@ function journeyResults(){title('Your starting points');const f=state.journey;if
 function noResults(dyn){return `<div class="wrap section">${pageHead('YOUR OWN PACE','Nothing to rush.','Complete a reflection when you’re ready, or explore the library without one.')}<a class="button primary" href="#/${dyn?'dynamics':'assessment'}">${dyn?'Explore adult dynamics':'Find your spark'} </a></div>`;}
 function dynamicsResults(){title('Your dynamics reflection');if(!state.dynamics.completed)return noResults(true);const r=scoreDynamics(state.dynamics.answers);return `<div class="wrap section" style="padding-top:0"><div class="result-header"><p class="eyebrow">WORDS FOR YOUR CURIOSITY</p><h1>${r.signal?'A few themes<br>to sit with.':'No label required.'}</h1><p class="lead">${r.signal?'These themes received the strongest agreement in the statements you answered. You can relate to several, none, or something this exercise doesn’t describe.':r.answered?'No strong agreement emerged. Neutral answers and disagreement are useful information. You don’t need to adopt a role.':'You skipped every statement. There is no personal result to calculate, and you are welcome to keep exploring.'}</p><p class="fine" style="margin-top:16px">${r.answered} of 25 statements answered · Original, unvalidated reflection</p></div>${r.limited&&r.answered?'<div class="notice">You answered fewer than 15 statements. This is a limited snapshot, and skipping questions can change which themes appear.</div>':''}${r.ties.length>1&&r.signal?`<div class="notice green-notice">Your highest score is tied across ${r.ties.length} themes. The cards show up to three in the exercise’s fixed order; the full list below shows every tie. There isn’t a single winning label.</div>`:''}${r.top.length?`<div class="result-grid">${r.top.map(x=>`<section class="result-card"><span class="result-number">${x.score}<small style="font-size:.8rem">%</small></span><h2>${x.name}<span class="fine" style="display:block;margin-top:8px">${x.title}</span></h2><p>${x.description}</p><a class="text-link" href="#/learn/${x.article}">Explore the language </a></section>`).join('')}</div>`:''}<div class="scores-panel"><h2>Your full reflection</h2><p class="fine">Percentages are agreement points divided by the maximum available points for the statements you answered, weighted for each theme. A neutral answer contributes 50%. They are not population percentiles, compatibility scores, or a scientifically validated measure. Unanswered themes are omitted.</p>${r.ranked.map(x=>`<div class="score-row"><span>${x.name}</span><span class="score-track" aria-hidden="true"><span style="width:${x.score}%"></span></span><span>${x.score}%</span></div>`).join('')}<details><summary>What do these role words mean?</summary>${r.ranked.map(x=>`<p class="fine" style="margin:15px 0"><strong>${x.name}:</strong> ${x.description} <span class="muted">Based on ${x.items} answered statements.</span></p>`).join('')}<p class="fine">This nine-theme vocabulary is not exhaustive. Submission is represented through some narrower themes rather than a separate general result. You may prefer other language entirely.</p></details></div><div class="practice"><p class="eyebrow">CONSENT COMES WITH EVERY ROLE</p><p>All roles here refer to consenting adults. No title, score, or agreement overrides your right to set limits, stop, or leave. Learning about a dynamic does not make every related activity safe.</p><a href="#/learn/consent-in-practice" class="text-link" style="margin-top:20px">Consent in practice </a></div><div class="result-actions no-print"><button class="button pink-button" data-action="download-result" data-flow="dynamics">Save my reflection </button><button class="button secondary" data-action="print">Print</button><button class="button secondary" data-action="retake" data-flow="dynamics">Revisit my answers</button></div><p class="fine">Saved files contain sensitive preferences. Download only if you want a copy on this device.</p></div>`;}
 const TOOLS=[{id:'conversation',name:'Conversation cards',description:'Twenty-four ways to open a gentler, deeper, or more curious conversation.'},{id:'check-in',name:'The ten-minute check-in',description:'Put words to what is present, what feels good, and what you need.'},{id:'boundaries',name:'Find your boundary words',description:'Turn an uncertain feeling into a clear, respectful sentence.'},{id:'reflection',name:'A little room to reflect',description:'Three prompts and a private page. Yours to keep or clear.'},{id:'care',name:'Prepare a care conversation',description:'Make a short note to bring to a qualified health professional.'},{id:'download',name:'Take the little toolkit',description:'A free printable companion with prompts, a check-in, and reflection space.'}];
-function toolsPage(){title('The little intimacy toolkit');return `<div class="wrap section" style="padding-top:0">${pageHead('SMALL STEPS. REAL CONNECTION.','The little<br>intimacy toolkit.','Useful words, gentle prompts, and a little space to be human. Every tool is free. No email address or Vulpes Ignis account required.','connection-ribbons')}<div class="tool-list">${TOOLS.map((t,i)=>`<a class="tool-item" href="#/tools/${t.id}"><span class="number">0${i+1}</span><h2>${t.name}</h2><p>${t.description}</p><span class="arrow" aria-hidden="true"></span></a>`).join('')}</div><p class="fine">Your notes stay in this tab’s session and aren’t sent to Vulpes Ignis. Browser session restore may retain them. Clear the session when you’re finished, especially on a shared device.</p></div>`;}
+function toolsPage(){title('The little intimacy toolkit');return `<div class="wrap section" style="padding-top:0">${pageHead('SMALL STEPS. REAL CONNECTION.','The little<br>intimacy toolkit.','Useful words, gentle prompts, and a little space to be human. Every tool is free. No email address or Vulpes Ignis account required.','connection-ribbons')}<div class="guidance-tools-cta"><div><p class="eyebrow">NOT SURE WHERE TO BEGIN?</p><h2>Ask a question. Find a useful next step.</h2><p>Ask Vulpes connects your question to existing guides, conversation prompts, and private tools.</p></div><a href="#/coach" class="button primary">Try Ask Vulpes</a></div><div class="tool-list">${TOOLS.map((t,i)=>`<a class="tool-item" href="#/tools/${t.id}"><span class="number">0${i+1}</span><h2>${t.name}</h2><p>${t.description}</p><span class="arrow" aria-hidden="true"></span></a>`).join('')}</div><p class="fine">Your notes stay in this tab’s session and aren’t sent to Vulpes Ignis. Browser session restore may retain them. Clear the session when you’re finished, especially on a shared device.</p></div>`;}
 function field(label,key,value='',placeholder='',rows=3){return `<label for="field-${key}">${label}</label><textarea id="field-${key}" name="${key}" rows="${rows}" maxlength="5000" placeholder="${placeholder}">${escape(value)}</textarea>`;}
 function textField(label,key,value='',placeholder=''){return `<label for="field-${key}">${label}</label><input id="field-${key}" name="${key}" type="text" maxlength="500" value="${escape(value)}" placeholder="${placeholder}">`;}
 const toolTitle=id=>TOOLS.find(t=>t.id===id)?.name||'Your tool';
@@ -49,40 +49,67 @@ function toolPage(id){if(!TOOLS.some(t=>t.id===id))return notFound();title(toolT
  return `<div class="wrap"><div class="illustrated-head tool-head"><div class="page-hero compact"><a class="back-link" href="#/tools"> Back to the toolkit</a><p class="eyebrow">SMALL STEPS. YOUR PACE.</p><h1>${toolTitle(id)}</h1></div>${artPanel(TOOL_ART[id])}</div><section class="tool-panel">${content}</section></div>`;}
 function about(){title('Our story');return `<div class="wrap">${pageHead('A LITTLE FIRE. A LOT OF HUMANITY.','Because these questions<br>deserve a kinder place.','Vulpes Ignis exists to help adults feel seen, understood, and able to make informed choices about intimacy and wellbeing.','garden-bloom')}<div class="about-grid"><div class="article-body"><h2 style="margin-top:0">A space built around people.</h2><p>Questions about intimacy rarely arrive neatly packaged. Sometimes they sound practical. Sometimes they sound like “Is it just me?” Sometimes they stay unasked for years.</p><p>Myke created Vulpes Ignis to make room for those questions: with clear education, useful tools, a little humor, and respect for the person asking. A fox’s curiosity. A fire’s warmth. Something you can actually use when you leave.</p><h2>Wisdom with its sleeves rolled up.</h2><p>Our aim is to help you understand something, find a sentence you can say, or choose a manageable next step. You don’t have to share our vocabulary, adopt a label, buy a product, or tell us your history.</p><p>Individuals, couples, adults in different relationship structures, people rebuilding trust, and people exploring something new are welcome. Your pace and boundaries belong to you.</p><h2>Clear about what we offer.</h2><p>This first edition offers original educational guides and private, rule-based tools. Vulpes Ignis is not a medical clinic or a licensed therapy service. Health-related articles link to primary sources and have not been clinically reviewed.</p><p>The longer vision includes reviewed community contributions, coaching, learning products, and carefully scoped AI assistance. Each needs its own real setup before we call it available.</p><a class="text-link" href="#/community">See what’s here and what’s next </a></div><aside class="about-note"><p class="eyebrow" style="margin-bottom:20px">WHAT WE COME BACK TO</p><h2>Connection over<br>perfection.</h2><p>Choice before pressure.<br>Clarity before cleverness.<br>Care before commerce.</p><p>And just enough humor to remember that being human is a fairly ridiculous group project.</p><a class="text-link" href="#/learn" style="margin-top:25px">Find something useful </a></aside></div></div>`;}
 function guidanceResult(){
- if(!state.coach.shown)return '';
- const result=answerQuestion(state.coach.question||'',state.coach.topic||'auto');
- const guides=result.guides.map(id=>ARTICLES.find(a=>a.id===id)).filter(Boolean);
- return `<section class="guidance-result" id="guidance-result" tabindex="-1" aria-label="Your educational starting point">
-   <p class="eyebrow">${result.matched?'SUGGESTED LEARNING TOPIC':'NO RELIABLE MATCH'}</p>
-   <h3>${escape(result.matched?result.label:'This question is outside this tool’s current coverage')}</h3>
-   <p>${escape(result.summary)}</p>
-   <p class="eyebrow">ONE USEFUL NEXT STEP</p>
-   <p>${escape(result.action)}</p>
-   ${result.starter?`<p class="eyebrow">WORDS YOU CAN ADAPT</p><blockquote class="guidance-suggested">${escape(result.starter)}</blockquote><div class="guidance-actions"><button type="button" class="button secondary" data-action="copy-guidance">Copy these words</button></div>`:''}
-   ${guides.length?`<p class="eyebrow">CONTINUE LEARNING</p><ul class="guidance-related">${guides.map(a=>`<li><a href="#/learn/${encodeURIComponent(a.id)}">${escape(a.title)}</a></li>`).join('')}</ul>`:''}
-   ${result.tool?`<div class="guidance-actions"><a class="button primary" href="#/tools/${encodeURIComponent(result.tool)}">Try a related practical tool</a><a class="button secondary" href="#/learn">Explore the library</a></div>`:`<div class="guidance-actions"><a class="button secondary" href="#/learn">Browse the learning library</a></div>`}
-   <p class="guidance-disclaimer">This result comes from fixed topic rules and existing educational content, not AI, live coaching, professional medical advice, or an individual risk assessment. It is a starting point, not a diagnosis or an instruction to act.</p>
- </section>`;
+  if(!state.coach.shown)return '';
+  const result=answerQuestion(state.coach.question||'',state.coach.topic||'auto');
+  const guides=result.guides.map(id=>ARTICLES.find(a=>a.id===id)).filter(Boolean);
+  const focus=['step','words','read'].includes(state.coach.focus)?state.coach.focus:'step';
+  const label=result.safety?'SAFETY FIRST':result.matched?'A STARTING POINT FROM OUR LIBRARY':'NO RELIABLE TOPIC MATCH';
+  let panel='';
+  if(result.matched){
+    if(focus==='step')panel=`<div class="guidance-view" id="guidance-view" aria-label="One small step">
+      <p class="eyebrow">ONE USEFUL NEXT STEP</p><p>${escape(result.action)}</p>
+      <p class="eyebrow">A QUESTION TO THINK ABOUT</p><p>${escape(result.reflection)}</p>
+      <p class="fine">You can reflect privately. Nothing needs to be submitted or downloaded.</p>
+      </div>`;
+    if(focus==='words')panel=`<div class="guidance-view" id="guidance-view" aria-label="Conversation wording">
+      <label class="eyebrow" for="guidance-draft">WORDS YOU CAN MAKE YOUR OWN</label>
+      <textarea id="guidance-draft" rows="5" maxlength="2000" aria-describedby="guidance-draft-note">${escape(typeof state.coach.draft==='string'?state.coach.draft:result.starter)}</textarea>
+      <p id="guidance-draft-note" class="fine">Edit before sharing. This is a suggested conversation opener, not an instruction to agree or participate.</p>
+      <button type="button" class="button secondary" data-action="copy-guidance">Copy my edited wording</button>
+      </div>`;
+    if(focus==='read')panel=`<div class="guidance-view" id="guidance-view" aria-label="Related guides">
+      <p class="eyebrow">KEEP LEARNING</p>
+      ${guides.length?`<ul class="guidance-related">${guides.map(a=>`<li><a href="#/learn/${encodeURIComponent(a.id)}">${escape(a.title)}</a></li>`).join('')}</ul>`:'<p>The related guides are currently unavailable.</p>'}
+      <div class="guidance-actions"><a class="button primary" href="#/tools/${encodeURIComponent(result.tool)}">Try a related practical tool</a><a class="button secondary" href="#/learn">Browse the library</a></div>
+      </div>`;
+  }
+  return `<section class="guidance-result" id="guidance-result" tabindex="-1" aria-label="Your educational starting point">
+    <p class="eyebrow">${label}</p>
+    <h3>${escape(result.label)}</h3>
+    <p>${escape(result.summary)}</p>
+    ${result.matched?`<p class="guidance-explanation"><strong>Why this appeared:</strong> ${escape(result.why)}</p>`:''}
+    ${result.matched&&result.alternatives.length?`<div class="guidance-alternates"><p class="eyebrow">ALSO RELATED</p><div class="guidance-actions">${result.alternatives.map(a=>`<button type="button" class="button secondary" data-action="guidance-topic" data-guidance-topic="${escape(a.id)}">${escape(a.label)}</button>`).join('')}</div></div>`:''}
+    ${result.matched?`<div class="guidance-views" role="group" aria-label="Choose what helps next">
+      ${[['step','A small next step'],['words','Words to use'],['read','Related reading']].map(([id,text])=>`<button type="button" data-action="guidance-focus" data-focus="${id}" aria-pressed="${focus===id}" class="guidance-view-button ${focus===id?'selected':''}">${text}</button>`).join('')}
+      </div>${panel}`:`<div class="notice ${result.safety?'':'green-notice'}" role="note"><p class="eyebrow">${result.safety?'A SAFER NEXT STEP':'WHAT YOU CAN DO'}</p><p>${escape(result.action)}</p></div>
+      ${!result.safety?'<p class="fine">You can choose a topic above instead. Unsupported questions will not receive a made-up answer.</p>':''}`}
+    <p class="guidance-disclaimer">This guidance comes from fixed topic rules and existing educational content, not AI, a live coach, or a medical assessment. Your question stays in this browser tab. Copied text can remain on the clipboard after clearing the session.</p>
+  </section>`;
 }
 function coach(){
  title('Ask Vulpes');
  return `<div class="wrap section" style="padding-top:0">
- ${pageHead('ASK VULPES · FREE GUIDANCE','Start with a question.','Find a relevant educational starting point, suggested wording, and a practical next step. There is no live coach or AI behind this tool.','conversation-chairs')}
- <section class="tool-panel guidance-panel" aria-labelledby="guidance-title">
- <p class="eyebrow">ASK VULPES</p>
- <h2 id="guidance-title">What’s on your mind?</h2>
- <p class="guidance-explain">Your question stays in this browser tab. A small set of transparent rules looks for a topic in our existing learning library. No question is sent to a server or another person. If the question is outside our coverage, we’ll tell you.</p>
- <form id="guidance-form">
- <label for="guidance-question">What would you like to understand or discuss?</label>
- <textarea id="guidance-question" name="question" maxlength="1500" rows="4" placeholder="Example: How can I talk to my partner about wanting more affection?">${escape(state.coach.question||'')}</textarea>
- <label for="guidance-topic">Choose a topic (optional)</label>
- <select id="guidance-topic" name="topic"><option value="auto">Find a matching topic for me</option>${GUIDANCE_CHOICES.map(t=>`<option value="${escape(t.id)}" ${state.coach.topic===t.id?'selected':''}>${escape(t.label)}</option>`).join('')}</select>
- <p class="guidance-choices">Selecting a topic is useful when the question is broad or the automatic match isn't quite right.</p>
- <div class="button-row"><button type="submit" class="button primary">Find a starting point</button><button type="button" class="button secondary" data-action="clear-guidance">Start over</button></div>
- </form>
- ${guidanceResult()}
- </section>
- <section aria-labelledby="guidance-faq-title"><h2 id="guidance-faq-title">Common questions, with clear answers</h2><div class="faq">${COACH_FAQ.map(([q,a])=>`<details><summary>${escape(q)}</summary><p>${escape(a)}</p></details>`).join('')}</div></section>
+   ${pageHead('ASK VULPES · FREE GUIDANCE','Find a useful next step.','Explore your question with a small, transparent topic guide. Choose an action, adapt a conversation opener, or find related reading. No paid AI or live coaching.','conversation-chairs')}
+   <section class="tool-panel guidance-panel" aria-labelledby="guidance-title">
+     <p class="eyebrow">ASK VULPES</p><h2 id="guidance-title">What is on your mind?</h2>
+     <p class="guidance-explain">Questions are matched to our published learning topics by fixed rules. Nothing is submitted to us or an outside AI. This is educational guidance, not a diagnosis or emergency response.</p>
+     <div class="guidance-quick" aria-label="Quick starting topics">
+       <p class="eyebrow">START WITH A TOPIC</p>
+       <div class="guidance-actions">
+       ${[['communication','Have a conversation'],['desire','Different desires'],['boundaries','Set a boundary'],['health','Comfort and care']].map(([id,label])=>`<button type="button" class="button secondary" data-action="guidance-quick" data-guidance-topic="${id}">${label}</button>`).join('')}
+       </div>
+     </div>
+     <form id="guidance-form">
+       <label for="guidance-question">Or type your question</label>
+       <textarea id="guidance-question" name="question" maxlength="1500" rows="4" placeholder="Example: How do I talk to my partner about wanting more affection?">${escape(state.coach.question||'')}</textarea>
+       <label for="guidance-topic">Choose a topic yourself (optional)</label>
+       <select id="guidance-topic" name="topic"><option value="auto">Match my question to a topic</option>${GUIDANCE_CHOICES.map(t=>`<option value="${escape(t.id)}" ${state.coach.topic===t.id?'selected':''}>${escape(t.label)}</option>`).join('')}</select>
+       <p class="guidance-choices">If the automatic match doesn't fit, select a different topic. Clear safety warnings cannot be overridden.</p>
+       <div class="button-row"><button type="submit" class="button primary">Find a starting point</button><button type="button" class="button secondary" data-action="clear-guidance">Clear my question</button></div>
+     </form>
+     ${guidanceResult()}
+   </section>
+   <section aria-labelledby="guidance-faq-title"><h2 id="guidance-faq-title">Common questions, with clear answers</h2><div class="faq">${COACH_FAQ.map(([q,a])=>`<details><summary>${escape(q)}</summary><p>${escape(a)}</p></details>`).join('')}</div></section>
  </div>`;
 }
 function community(){title('Community & what’s next');return `<div class="wrap section" style="padding-top:0">${pageHead('GROWING WITH INTENTION','A place to return to.<br>Built one real step at a time.','The vision is a thoughtful community around adult wellness, connection, and honest questions. Here is what you can use today, and what still needs to be built.')}<div class="status-list">${[
@@ -123,8 +150,10 @@ document.addEventListener('click',e=>{if(e.target.closest('.skip')){e.preventDef
  else if(a==='copy-output')copy(outputText);
  else if(a==='download-output'){download('Vulpes-Ignis-Private-Note.txt',outputText);toast('Your private note has been downloaded.');}
  else if(a==='clear-note'){state[b.dataset.note]={};persist();outputText='';render();toast('These notes have been cleared.');}
- else if(a==='clear-guidance'){state.coach={};persist();render();document.getElementById('guidance-question')?.focus();toast('Your question was cleared from this session.');}
- else if(a==='copy-guidance'){const g=answerQuestion(state.coach.question||'',state.coach.topic||'auto');if(g.matched&&g.starter)copy(g.starter);}
+ else if(a==='clear-guidance'){state.coach={};persist();render();document.getElementById('guidance-question')?.focus();toast('Question cleared from this tab.');}
+ else if(a==='guidance-quick'||a==='guidance-topic'){const id=b.dataset.guidanceTopic;if(!GUIDANCE_CHOICES.some(x=>x.id===id))return;state.coach={question:state.coach.question||'',topic:id,shown:true,focus:'step'};persist();render();document.getElementById('guidance-result')?.focus({preventScroll:true});document.getElementById('guidance-result')?.scrollIntoView({behavior:'auto',block:'start'});}
+ else if(a==='guidance-focus'){const focus=b.dataset.focus;if(!['step','words','read'].includes(focus)||!state.coach.shown)return;state.coach.focus=focus;persist();render();document.querySelector('[data-action="guidance-focus"][data-focus="'+focus+'"]')?.focus({preventScroll:true});document.getElementById('guidance-result')?.scrollIntoView({behavior:'auto',block:'start'});}
+ else if(a==='copy-guidance'){const textarea=document.getElementById('guidance-draft');if(!textarea)return;const text=textarea.value;if(!text.trim()){toast('Add some wording before copying.');textarea.focus();return;}if(navigator.clipboard?.writeText){navigator.clipboard.writeText(text).then(()=>toast('Edited wording copied.')).catch(()=>{textarea.focus();textarea.select();toast('Select the text and copy it manually.');});}else{textarea.focus();textarea.select();toast('Select the text and copy it manually.');}}
  else if(a==='toolkit-html'){download('The-Little-Intimacy-Toolkit.html',toolkitHTML(),'text/html;charset=utf-8');toast('Your printable toolkit has been downloaded.');}
 });
 function closeMenu(){$('#mobile-nav').hidden=true;$('.menu-button').setAttribute('aria-expanded','false');$('.menu-button').setAttribute('aria-label','Open navigation');}
@@ -132,10 +161,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#mobile-nav').h
 document.addEventListener('change',e=>{if(e.target.matches('[data-path-step]')){const checkbox=e.target;state.space=markStep(state.space,checkbox.dataset.path,checkbox.dataset.pathStep,checkbox.checked);persist();const id=checkbox.id;render();document.getElementById(id)?.focus({preventScroll:true});return;}if(e.target.matches('input[name="quiz-answer"]')){const type=e.target.dataset.flow;const qs=type==='dynamics'?DYNAMIC_QUESTIONS:QUESTIONS;const value=e.target.value;state[type].answers[qs[state[type].step].id]=type==='dynamics'?Number(value):value;persist();render();document.querySelector(`input[name="quiz-answer"][value="${CSS.escape(value)}"]`)?.focus({preventScroll:true});}});
 document.addEventListener('input',e=>{if(e.target.id==='library-search'){state.search=e.target.value;$('#library-results').innerHTML=filteredArticles();const n=matchingArticles().length;$('#library-count').textContent=`${n} ${n===1?'guide':'guides'} to explore`;return;}const form=e.target.closest('form[data-notes]');if(form){const key=form.dataset.notes;state[key][e.target.name]=e.target.value;persist();}});
 document.addEventListener('input',e=>{
+   if(e.target.id==='guidance-draft'){state.coach.draft=e.target.value.slice(0,2000);persist();return;}
    if(!e.target.closest('#guidance-form'))return;
    const form=e.target.form;
    const fields=Object.fromEntries(new FormData(form));
-   state.coach={question:String(fields.question||'').slice(0,1500),topic:GUIDANCE_CHOICES.some(x=>x.id===fields.topic)?fields.topic:'auto',shown:false};
+   state.coach={question:String(fields.question||'').slice(0,1500),topic:GUIDANCE_CHOICES.some(x=>x.id===fields.topic)?fields.topic:'auto',shown:false,focus:'step'};
    persist();
    document.getElementById('guidance-result')?.remove();
  });
@@ -147,7 +177,7 @@ document.addEventListener('input',e=>{
    const question=String(values.question||'').trim().slice(0,1500);
    const topic=GUIDANCE_CHOICES.some(x=>x.id===values.topic)?values.topic:'auto';
    if(!question&&topic==='auto'){toast('Write a question or choose a topic to explore.');form.querySelector('#guidance-question')?.focus();return;}
-   state.coach={question,topic,shown:true};
+   state.coach={question,topic,shown:true,focus:'step'};
    persist();render();
    const result=document.getElementById('guidance-result');
    if(result){result.focus({preventScroll:true});result.scrollIntoView({behavior:'auto',block:'start'});}

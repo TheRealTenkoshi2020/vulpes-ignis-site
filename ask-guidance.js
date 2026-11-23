@@ -110,20 +110,61 @@ const UNCERTAIN = Object.freeze({
   action:'Choose a topic from the menu to see a relevant educational starting point, or browse the learning library. If this is about immediate danger, contact local emergency services.',
   starter:'',guides:[],tool:null
 });
-export function answerQuestion(question, selectedTopic='auto'){
-  const q=typeof question==='string'?question.trim().slice(0,1500):'';
-  const explicit=GUIDANCE_TOPICS.find(x=>x.id===selectedTopic);
-  if(!q && !explicit) return UNCERTAIN;
-  let topic=explicit||null;
-  if(!topic){
-    const candidates=GUIDANCE_TOPICS.map(item=>{
-      const match=item.cue.test(q);
-      const context=item.context.test(q);
-      return {item,score:match?(3+(context?2:0)):0,context};
-    }).filter(x=>x.score>=3&&(!x.item.needsContext||x.context));
-    candidates.sort((a,b)=>b.score-a.score);
-    topic=candidates[0]?.item||null;
-  }
-  if(!topic)return UNCERTAIN;
-  return {matched:true,id:topic.id,label:topic.label,summary:topic.summary,action:topic.action,starter:topic.starter,guides:[...topic.guides],tool:topic.tool,selectedManually:!!explicit};
+// Stage 1.1: transparent topic ordering, suggestions for another angle, and safety fallback.
+const PRIORITY={communication:1,connection:2,desire:6,boundaries:6,consent:6,performance:5,confidence:3,sti:7,health:9,dynamics:6,products:4};
+const REFLECTIONS={
+ communication:'What would you most like the other person to understand?',
+ connection:'Which small kind of closeness would feel welcome this week?',
+ desire:'What kind of connection feels comfortable without an expectation of sex?',
+ boundaries:'What limit matters here, and what action can you control?',
+ consent:'How could everyone involved feel free to pause or decline?',
+ performance:'What would intimacy look like if there were no goal to achieve?',
+ confidence:'Which expectation could you set aside for a moment?',
+ sti:'What testing or protection question could you discuss with a qualified professional?',
+ health:'What change or symptom would you want to describe to a qualified clinician?',
+ dynamics:'What would you want to discuss before doing anything?',
+ products:'What comfort, material, or hygiene question matters most?'
+};
+const SAFETY_LANGUAGE=/\b(suicid\w*|kill myself|end my life|self[- ]?harm|sexual assault|raped|rape|threaten(?:ed|ing)? to (?:hurt|kill)|afraid for my safety|being forced to have sex|forced into sex|partner (?:hit|hits|hurt|hurts) me)\b/i;
+const UNRELATED=/\b(at work|performance review|my boss|coworker|manager|office job|wifi|internet connection|train station|software|javascript)\b/i;
+const ADULT_CONTEXT=/\b(partner|spouse|husband|wife|boyfriend|girlfriend|relationship|intimacy|affection|closeness|sex|sexual|consent|boundary|bdsm|kink|sti|std|genital|my body)\b/i;
+const blank=(message=UNCERTAIN.summary)=>({
+ matched:false,safety:false,id:null,label:'No reliable topic match',summary:message,
+ action:'Choose a topic to explore our educational guides, or browse the library. If this is an emergency, contact local emergency services.',
+ starter:'',guides:[],tool:null,alternatives:[],why:'No reliable topic was identified.',reflection:''
+});
+export function answerQuestion(question,selectedTopic='auto'){
+ const q=typeof question==='string'?question.trim().slice(0,1500):'';
+ if(SAFETY_LANGUAGE.test(q))return {
+   ...blank('This tool cannot assess a crisis or personal safety. You deserve direct support from someone who can respond.'),
+   safety:true,label:'Safety needs a human response',
+   action:'If you are in immediate danger, contact local emergency services. If you might harm yourself, contact local crisis support or a trusted person who can stay with you. In the United States, call or text 988 for suicidal crisis support.',
+   why:'This kind of question requires human support, not a generated conversation script.'
+ };
+ const explicit=GUIDANCE_TOPICS.find(x=>x.id===selectedTopic);
+ if(!q&&!explicit)return blank();
+ if(!explicit&&UNRELATED.test(q)&&!ADULT_CONTEXT.test(q))return blank();
+ let topic=explicit,alternatives=[];
+ if(!topic){
+   const askToTalk=/\b(how (can|do|should) i (talk|tell)|how to (talk|tell)|what (can|should) i say)\b/i.test(q);
+   const matches=GUIDANCE_TOPICS.map(item=>{
+     const extra=item.id==='desire'&&/\bdesires\b/i.test(q);
+     const cue=item.cue.test(q)||extra,context=item.context.test(q);
+     const needsContext=item.needsContext||['communication','connection','confidence','dynamics','products','consent'].includes(item.id);
+     const score=cue&&(!needsContext||context)?
+       3+(context?2:0)+(PRIORITY[item.id]||0)+(item.id==='communication'&&askToTalk?4:0):0;
+     return {item,score};
+   }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+   topic=matches[0]?.item||null;
+   alternatives=matches.slice(1,3).map(({item})=>({id:item.id,label:item.label}));
+ }
+ if(!topic)return blank();
+ return {
+   matched:true,safety:false,id:topic.id,label:topic.label,
+   summary:topic.summary,action:topic.action,starter:topic.starter,
+   guides:[...topic.guides],tool:topic.tool,
+   reflection:REFLECTIONS[topic.id],alternatives,
+   selectedManually:!!explicit,
+   why:explicit?'You selected this topic. Suggestions come from existing guides and fixed templates.':'This is a match to predefined topic keywords, not an interpretation of your circumstances.'
+ };
 }

@@ -257,3 +257,30 @@ main[tabindex]:focus-visible{outline:none}
 .guidance-actions{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
 .guidance-disclaimer{color:var(--muted);font-size:.76rem;line-height:1.6;margin-top:18px}
 @media(max-width:600px){.guidance-panel{padding:22px 17px}.guidance-result{padding:17px 15px}.guidance-actions .button{width:100%}}
+
+/* Ask Vulpes v1.1 — touch-friendly follow-up navigation */
+.guidance-quick{padding:16px 0 9px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:25px}
+.guidance-quick .guidance-actions{margin:6px 0 13px}
+.guidance-quick .button{min-height:46px}
+.guidance-explanation{font-size:.82rem;color:var(--muted);background:var(--surface);padding:12px 14px;border-left:2px solid var(--green)}
+.guidance-explanation strong{color:var(--text)}
+.guidance-alternates{margin:19px 0}
+.guidance-alternates .guidance-actions{margin:6px 0}
+.guidance-views{display:flex;gap:7px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:23px 0 0;padding-bottom:12px}
+.guidance-view-button{border:1px solid #69725d;border-radius:4px;background:transparent;color:var(--text);padding:11px 14px;min-height:46px;cursor:pointer;font:inherit;font-size:.8rem}
+.guidance-view-button.selected{background:var(--green);border-color:var(--green);color:#141512;font-weight:700}
+.guidance-view-button:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.guidance-view{padding:17px 0 3px}
+.guidance-view .eyebrow{display:block}
+.guidance-view textarea{background:var(--surface);color:var(--text);border:1px solid #7b826f;border-radius:4px;width:100%;padding:13px;min-height:155px;line-height:1.6;resize:vertical;margin:8px 0 15px}
+.guidance-view .guidance-related{margin-top:10px}
+.guidance-view .button{margin:9px 0}
+.guidance-panel form select{color:var(--text);background:var(--bg)}
+@media(max-width:600px){.guidance-view-button{flex:1 0 100%}.guidance-quick .guidance-actions>.button{flex:1 0 48%;min-width:0}.guidance-view .button{width:100%}}
+
+.guidance-tools-cta{display:flex;justify-content:space-between;align-items:center;gap:26px;padding:24px 26px;margin:22px 0 31px;border:1px solid var(--line);border-left:3px solid var(--green);background:var(--surface);border-radius:5px}
+.guidance-tools-cta h2{font:1.65rem/1.2 var(--serif);margin:8px 0 10px}
+.guidance-tools-cta p{font-size:.88rem;color:var(--muted);margin:0;max-width:520px}
+.guidance-tools-cta .eyebrow{color:var(--green);font-size:.72rem}
+.guidance-tools-cta .button{flex-shrink:0}
+@media(max-width:680px){.guidance-tools-cta{flex-direction:column;align-items:stretch;padding:20px 18px}.guidance-tools-cta .button{width:100%}}

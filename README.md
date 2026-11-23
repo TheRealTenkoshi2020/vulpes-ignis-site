@@ -15,3 +15,17 @@ The site is intended for adults 18+ and offers educational content and private, 
 Export only the tested `dist/` files from the private source repository into the root of this public repository. Keep public-facing privacy statements, social preview URLs, and reading-list links accurate if the hosting domain changes. The source repository and the original ChatGPT Sites edition are separate; publishing here does not change either of them.
 
 No store, online account system, analytics tracking, payment processing, or private coaching submission is provided in this static version.
+
+## Ask Vulpes — rule-based guidance, iteration 1.1
+
+The free **Ask Vulpes** page (`#/coach`) now offers 11 predefined intimacy and relationship topics, supported by existing educational guides and private tools.
+
+- Start with a question or choose one of four quick topics.
+- Explore a **small next step**, an **editable conversation starter**, or **related reading**.
+- When multiple topics match, consider a different subject without retyping.
+- Learn why a suggestion appeared. The tool uses keyword matching, **not AI** or human coaching.
+- Unsupported questions receive a clear fallback rather than an invented answer.
+- Clearly indicated crisis/safety phrases show a human-support message instead of an ordinary conversation template.
+- Entries and edited wording stay in the browser tab session, and can be cleared. Optional clipboard copies remain outside the site's control.
+
+The site has no question-submission backend or paid AI service. These are educational starting points, not individualized health assessments or emergency triage. GitHub Pages hosts only released visitor files; unfinished manuscripts remain in the separate private source repository.
