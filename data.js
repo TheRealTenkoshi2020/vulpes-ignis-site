@@ -1,3 +1,4 @@
+import { PUBLISHED_FITNESS_01 } from './published-fitness-01.js';
 import { PUBLISHED_GUIDES_03 } from './published-guides-03.js';
 import { PUBLISHED_PLAYFUL_01 } from './published-playful-01.js';
 import { PUBLISHED_GUIDES_04 } from './published-guides-04.js';
@@ -80,7 +81,7 @@ export const ARTICLES=[
  ...PUBLISHED_PLAYFUL_01,
  ...PUBLISHED_PLAYFUL_02,
  ...PUBLISHED_PLAYFUL_03,
- ...PUBLISHED_GUIDES_04, ...PUBLISHED_BDSM_01
+ ...PUBLISHED_GUIDES_04, ...PUBLISHED_BDSM_01, ...PUBLISHED_FITNESS_01
 ];
 export const PROMPTS={
  gentle:['What has made you feel cared for lately?','What is one small thing you would like more of this week?','When do you feel most able to be yourself?','What kind of closeness feels welcome today?','What is something I might not realize you appreciate?','What would make an ordinary evening feel a little kinder?','Is there something you want me to understand without trying to fix it?','What is a good way for me to check in when you seem quiet?'],
