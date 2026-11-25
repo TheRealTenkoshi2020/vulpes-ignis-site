@@ -1,3 +1,4 @@
+import { CURATED_ACTIVITY_GUIDES } from './foxfire4-activity-links.js';
 // Host guide and existing-tool links for Foxfire II. Only published IDs.
 export const CATEGORY_GUIDES = {
   "communication": "talk-about-needs",
@@ -9,7 +10,7 @@ export const CATEGORY_GUIDES = {
   "energy": "intimacy-on-low-energy-days",
   "boundaries": "boundaries-are-an-invitation"
 };
-export const ACTIVITY_GUIDES = {
+const BASE_ACTIVITY_GUIDES = {
   "communication-01": "talk-about-needs",
   "communication-02": "talk-about-needs",
   "communication-03": "talk-about-needs",
@@ -166,6 +167,7 @@ export const ACTIVITY_GUIDES = {
   "boundaries-14": "boundaries-are-an-invitation",
   "boundaries-15": "boundaries-are-an-invitation"
 };
+export const ACTIVITY_GUIDES = { ...BASE_ACTIVITY_GUIDES, ...CURATED_ACTIVITY_GUIDES };
 export const DECK_GUIDES = {
   "little-things": "appreciation-without-flattery",
   "after-dark": "date-night-curiosity",
