@@ -517,7 +517,7 @@ export const CONTENT = {
       "tool": "/care-navigator",
       "minutes": 3,
       "mode": "individual",
-      "stop": "You can skip, keep this private or stop at any time. If you fear retaliation, prioritize your safety and appropriate human support."
+      "stop": "Use this only if it helps you prepare a question for a qualified professional. You can skip or stop; this is not diagnosis or treatment."
     },
     {
       "id": "walking-and-erectile-health",
@@ -537,7 +537,7 @@ export const CONTENT = {
       "tool": "/care-navigator",
       "minutes": 3,
       "mode": "individual",
-      "stop": "You can skip, keep this private or stop at any time. If you fear retaliation, prioritize your safety and appropriate human support."
+      "stop": "Use this only if it helps you prepare a question for a qualified professional. You can skip or stop; this is not diagnosis or treatment."
     },
     {
       "id": "exercise-and-antidepressant-sexual-side-effects",
@@ -547,7 +547,7 @@ export const CONTENT = {
       "tool": "/care-navigator",
       "minutes": 3,
       "mode": "individual",
-      "stop": "You can skip, keep this private or stop at any time. If you fear retaliation, prioritize your safety and appropriate human support."
+      "stop": "Use this only if it helps you prepare a question for a qualified professional. You can skip or stop; this is not diagnosis or treatment."
     },
     {
       "id": "sleep-apnea-and-sexual-health",

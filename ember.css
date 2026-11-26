@@ -1,0 +1,29 @@
+/* Corrective layout only: preserve the existing palette, routes and content. */
+.ember-chips{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.75rem 0 1rem}
+.ember-chips button{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere;text-align:start;min-height:44px}
+.ember-notice{border:1px solid var(--line,#36392f);padding:1rem;margin:1rem 0;border-radius:.5rem;overflow-wrap:anywhere}
+.ember-notice h2{font-size:clamp(1.25rem,4vw,1.8rem);margin-bottom:.7rem}.ember-notice a{text-decoration:underline}
+.copy-output{white-space:pre-wrap;overflow-wrap:anywhere}
+.fx-grid>*,.fx-panel,.fx3-grid>*,.fx4-grid>*{min-width:0}
+.fx-panel h2,.fx-panel h1,.fx-shell h1,.page-hero h1,.page-hero .lead,.fx3-shell h1,.fx4-shell h1,.article-card h3,.article-card p,.section-subtitle,.article-head .lead{overflow-wrap:anywhere;white-space:normal;max-height:none;line-clamp:unset;-webkit-line-clamp:unset;text-overflow:clip}
+.article-head .lead{overflow:visible}
+.skip:focus{top:12px;max-width:calc(100vw - 40px);white-space:normal;outline:3px solid currentColor}
+/* Keep the original Quick Exit link/listener in a dedicated sticky row. */
+.ember-exit-bar{position:sticky;top:0;z-index:25;display:flex;justify-content:flex-end;max-width:100%;padding:0 16px;border-bottom:1px solid var(--line,#36392f);background:var(--bg,#141512)}
+.ember-exit-bar .quick-exit{position:static;right:auto;bottom:auto;margin:0;display:inline-flex;align-items:center;min-height:44px;padding:8px 12px;border-radius:4px;box-shadow:none;max-width:100%;white-space:normal;overflow-wrap:anywhere;text-decoration:underline}
+.ember-exit-bar a:focus-visible{outline-offset:2px}
+html{scroll-padding-top:60px}:where(a,button,input,select,textarea,summary,[tabindex],.ember-source-list li){scroll-margin-top:60px;scroll-margin-bottom:12px}
+.sources{display:block}.sources h2{font-size:1.4rem;margin-bottom:.8rem}
+.ember-source-list{list-style:none;padding:0;margin:.8rem 0;display:grid;gap:.65rem;min-width:0}.ember-source-list li{min-width:0}.ember-source-list a{display:block;overflow-wrap:anywhere;max-width:100%;padding:.35rem 0}
+.ember-source-number,.citation-link{white-space:nowrap}.citation-link{display:inline-flex;min-width:24px;min-height:24px;align-items:center;justify-content:center;margin-inline-end:.25rem}
+.section-citations .fine{display:block;margin-bottom:.2rem}
+.ember-related-list{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;padding:0;margin:1rem 0}.ember-related-list li{min-width:0}.ember-related-card{display:block;height:100%;padding:1rem;border:1px solid var(--line,#36392f);border-radius:.5rem;overflow-wrap:anywhere}.ember-related-card h3{font-size:1.15rem;margin:0 0 .65rem}.ember-related-card p{font-size:.95rem;line-height:1.6;margin:0}
+@media(max-width:760px){.ember-related-list{grid-template-columns:minmax(0,1fr)}}
+@media print{.ember-chips,.ember-exit-bar,.quick-exit,.article-related{display:none!important}.ember-source-list a{color:#111;overflow-wrap:anywhere}}
+
+/* Reserve the loading viewport so the footer does not shift out from under visitors. */
+#main:empty{min-height:100svh}
+
+/* Wrap enlarged text in the retained header, footer and Academy choices. */
+.header .brand{white-space:normal}.header .brand>span,.footer-grid>*{min-width:0;overflow-wrap:anywhere}.footer-top .brand{white-space:normal;overflow-wrap:anywhere}.fx-choice>span{min-width:0;overflow-wrap:anywhere}.fx-panel legend{overflow-wrap:anywhere}
+@media(max-width:640px){.header{height:auto;min-height:78px;padding-block:10px}}

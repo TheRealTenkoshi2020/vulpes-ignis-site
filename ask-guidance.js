@@ -1,5 +1,6 @@
 // Deterministic, offline guidance based only on existing Vulpes Ignis educational guides.
 // This is keyword matching, not AI, personalized coaching, triage, or diagnosis.
+import {safetySignals,SAFETY} from './foxfire3.js';
 export const GUIDANCE_TOPICS = Object.freeze([
   {
     id:'communication', label:'Talking about something difficult',
@@ -135,10 +136,11 @@ const blank=(message=UNCERTAIN.summary)=>({
 });
 export function answerQuestion(question,selectedTopic='auto'){
  const q=typeof question==='string'?question.trim().slice(0,1500):'';
- if(SAFETY_LANGUAGE.test(q))return {
+ const safetyFlags=safetySignals(q);
+ if(SAFETY_LANGUAGE.test(q)||safetyFlags.length)return {
    ...blank('This tool cannot assess a crisis or personal safety. You deserve direct support from someone who can respond.'),
    safety:true,label:'Safety needs a human response',
-   action:'If you are in immediate danger, contact local emergency services. If you might harm yourself, contact local crisis support or a trusted person who can stay with you. In the United States, call or text 988 for suicidal crisis support.',
+   action:safetyFlags.length?'For immediate danger, contact local emergency services.\n\n'+safetyFlags.map(id=>SAFETY[id].text).join('\n\n'):'If you are in immediate danger, contact local emergency services. If you might harm yourself, contact local crisis support or a trusted person who can stay with you. In the United States, call or text 988 for suicidal crisis support.',
    why:'This kind of question requires human support, not a generated conversation script.'
  };
  const explicit=GUIDANCE_TOPICS.find(x=>x.id===selectedTopic);

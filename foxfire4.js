@@ -1,9 +1,10 @@
+import { plainHTML } from './ember.js';
 import { CONTENT } from './foxfire4-content.js';
 export { CONTENT };
 // Enable only after real print-preview checks pass for the new resource flows.
 export const NATIVE_PRINT_READY = false;
 export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export const plain=v=>String(v??'').replace(/<[^>]*>/g,' ').replace(/&(?:amp|quot|apos|lt|gt|#39);/g,' ').replace(/\s+/g,' ').trim();
+export const plain=v=>plainHTML(v);
 export const norm=v=>plain(v).normalize('NFKD').toLowerCase().replace(/\p{M}/gu,'').replace(/[^\p{L}\p{N}]+/gu,' ').trim();
 export const tokens=v=>[...new Set(norm(v).split(' ').filter(x=>x.length>1))];
 const stopWords=new Set('the a an to of on with in is are for and or from without how when what your you it can do not as by at'.split(' '));

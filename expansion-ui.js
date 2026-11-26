@@ -1,7 +1,8 @@
+import { authored as emberAuthored, consentHTML as emberConsentHTML } from './ember.js';
 import {ACTIVITIES,DECKS,WORKSHOPS,ADAPTATIONS,REFLECTIONS,MATCH_TOPICS,DESIRE_STEPS,e,emptyPrefs,normalizePrefs,emptyExpansion,emptyPrivate,filterActivities,getActivity,toggleSaved,markWorkshop,markDesire,setReflection,reflectionSummary,reflectionText,emptyMatch,matchStart,matchSelect,matchSubmit,matchSecond,routes} from './expansion.js';
 import {guideForActivity,DECK_GUIDES,ADAPTATION_GUIDES,EXISTING_TOOLS} from './expansion-links.js';
 import {NATIVE_PRINT_READY} from './foxfire4.js';
-const link=(href,label,cls='text-link')=>`<a class="${cls}" href="${e(href)}">${e(label)}</a>`;
+const link=(href,label,cls='text-link')=>`<a class="${cls}" href="${e(href)}">${emberAuthored(label)}</a>`;
 const btn=(act,label,extra='',cls='button secondary')=>`<button type="button" class="${cls}" data-fx2="${act}" ${extra}>${e(label)}</button>`;
 const head=(t,d)=>`<p class="eyebrow">YOUR PACE. YOUR CHOICE.</p><h1>${e(t)}</h1><p class="lead">${e(d)}</p>`;
 const shell=body=>`<div class="wrap section fx2-shell">${link(routes.hub,'Connection & discovery home')}${body}</div>`;
