@@ -10,7 +10,12 @@ export const CONTENT = {
         "pleasure-anatomy-without-myths",
         "desire-and-arousal-are-different",
         "consent-in-practice",
-        "orientation-identity-and-language"
+        "orientation-identity-and-language",
+        "normal-genital-variation",
+        "masturbation-and-health",
+        "asexual-and-aromantic-lives",
+        "reading-sexual-health-claims",
+        "trans-and-nonbinary-sexual-health"
       ],
       "tool": "/foundations"
     },
@@ -23,7 +28,11 @@ export const CONTENT = {
         "listening-without-rushing-to-fix",
         "ten-minute-check-in",
         "boundaries-are-an-invitation",
-        "coach-partner-wont-talk"
+        "coach-partner-wont-talk",
+        "consensual-nonmonogamy",
+        "autistic-adults-and-intimacy",
+        "your-body-your-exam",
+        "finding-the-right-sexual-health-help"
       ],
       "tool": "/tools/conversation-workshop"
     },
@@ -49,7 +58,12 @@ export const CONTENT = {
         "boundaries-are-an-invitation",
         "consent-and-surprises",
         "gentle-rejection",
-        "boundaries-at-the-start-of-dating"
+        "boundaries-at-the-start-of-dating",
+        "consensual-nonmonogamy",
+        "your-body-your-exam",
+        "freezing-or-panic-during-intimacy",
+        "reproductive-coercion",
+        "after-sexual-assault"
       ],
       "tool": "/tools/boundaries"
     },
@@ -62,7 +76,10 @@ export const CONTENT = {
         "performance-pressure",
         "body-image-without-a-scoreboard",
         "body-neutral-intimacy",
-        "coach-anxious-about-first-intimacy"
+        "coach-anxious-about-first-intimacy",
+        "normal-genital-variation",
+        "porn-and-real-world-sex",
+        "asexual-and-aromantic-lives"
       ],
       "tool": "/explore"
     },
@@ -75,7 +92,9 @@ export const CONTENT = {
         "intimacy-on-low-energy-days",
         "intimacy-after-a-long-week",
         "intimacy-when-life-is-busy",
-        "sensory-friendly-date"
+        "sensory-friendly-date",
+        "endometriosis-and-intimacy",
+        "cancer-treatment-and-sexual-wellbeing"
       ],
       "tool": "/wellness-planner"
     },
@@ -88,7 +107,28 @@ export const CONTENT = {
         "menopause-intimacy-comfort",
         "disability-chronic-illness-and-intimacy",
         "pelvic-floor-muscles-not-always-stronger",
-        "prepare-for-care"
+        "prepare-for-care",
+        "anal-health-and-comfort",
+        "sex-during-pregnancy",
+        "intimacy-after-pregnancy-loss",
+        "intimacy-after-pelvic-surgery",
+        "discharge-itching-and-odor",
+        "burning-after-sex",
+        "bleeding-during-or-after-sex",
+        "testicular-changes",
+        "endometriosis-and-intimacy",
+        "vulvodynia-and-vaginismus",
+        "prostatitis-and-pelvic-pain",
+        "peyronies-disease",
+        "ejaculation-timing-and-changes",
+        "testosterone-low-desire-and-fertility",
+        "pcos-and-sexual-wellbeing",
+        "medication-sexual-side-effects",
+        "sex-after-heart-disease",
+        "cancer-treatment-and-sexual-wellbeing",
+        "trans-and-nonbinary-sexual-health",
+        "sexual-wellbeing-in-later-life",
+        "your-body-your-exam"
       ],
       "tool": "/care-navigator"
     },
@@ -101,7 +141,27 @@ export const CONTENT = {
         "sti-testing-what-to-ask",
         "safer-sex-layered-protection",
         "choosing-contraception-together",
-        "hpv-vaccines-and-screening"
+        "hpv-vaccines-and-screening",
+        "barrier-use-and-fit",
+        "if-a-condom-breaks",
+        "hiv-prep-options",
+        "hiv-pep-after-exposure",
+        "u-equals-u",
+        "doxy-pep",
+        "vaccines-beyond-hpv",
+        "herpes-without-shame",
+        "positive-chlamydia-gonorrhea",
+        "understanding-syphilis",
+        "emergency-contraception",
+        "missed-birth-control",
+        "cycle-apps-fertility-awareness",
+        "vasectomy-decisions-and-follow-up",
+        "pregnancy-tests-next-steps",
+        "preconception-checkup",
+        "fertility-evaluation",
+        "sex-during-pregnancy",
+        "trans-and-nonbinary-sexual-health",
+        "after-sexual-assault"
       ],
       "tool": "/care-navigator"
     },
@@ -114,7 +174,11 @@ export const CONTENT = {
         "trust-after-broken-agreement",
         "emotional-labor-and-fairness",
         "appreciation-without-flattery",
-        "relationship-repair-rituals"
+        "relationship-repair-rituals",
+        "asexual-and-aromantic-lives",
+        "consensual-nonmonogamy",
+        "intimacy-after-pregnancy-loss",
+        "sexual-wellbeing-in-later-life"
       ],
       "tool": "/paths"
     },
@@ -127,7 +191,9 @@ export const CONTENT = {
         "touch-preference-map",
         "sensory-friendly-date",
         "nonsexual-sensory-exploration",
-        "disability-chronic-illness-and-intimacy"
+        "disability-chronic-illness-and-intimacy",
+        "autistic-adults-and-intimacy",
+        "freezing-or-panic-during-intimacy"
       ],
       "tool": "/explore"
     },
@@ -140,7 +206,16 @@ export const CONTENT = {
         "eat-for-circulation",
         "sleep-apnea-and-sexual-health",
         "reading-beyond-the-label",
-        "five-minute-breathing-pause"
+        "five-minute-breathing-pause",
+        "reading-sexual-health-claims",
+        "preconception-checkup",
+        "testosterone-low-desire-and-fertility",
+        "pcos-and-sexual-wellbeing",
+        "medication-sexual-side-effects",
+        "sex-after-heart-disease",
+        "cancer-treatment-and-sexual-wellbeing",
+        "finding-the-right-sexual-health-help",
+        "sexual-healthcare-on-a-budget"
       ],
       "tool": "/wellness"
     },
@@ -153,7 +228,10 @@ export const CONTENT = {
         "yes-maybe-no-list-for-adults",
         "curiosity-without-comparison",
         "thoughtful-product-choices",
-        "exploring-dynamics"
+        "exploring-dynamics",
+        "masturbation-and-health",
+        "porn-and-real-world-sex",
+        "anal-health-and-comfort"
       ],
       "tool": "/explore"
     }

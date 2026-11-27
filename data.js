@@ -1,3 +1,8 @@
+import { PUBLISHED_CURRICULUM_05 } from './published-curriculum-05.js';
+import { PUBLISHED_CURRICULUM_04 } from './published-curriculum-04.js';
+import { PUBLISHED_CURRICULUM_03 } from './published-curriculum-03.js';
+import { PUBLISHED_CURRICULUM_02 } from './published-curriculum-02.js';
+import { PUBLISHED_CURRICULUM_01 } from './published-curriculum-01.js';
 import { PUBLISHED_FITNESS_01 } from './published-fitness-01.js';
 import { PUBLISHED_GUIDES_03 } from './published-guides-03.js';
 import { PUBLISHED_PLAYFUL_01 } from './published-playful-01.js';
@@ -81,7 +86,7 @@ export const ARTICLES=[
  ...PUBLISHED_PLAYFUL_01,
  ...PUBLISHED_PLAYFUL_02,
  ...PUBLISHED_PLAYFUL_03,
- ...PUBLISHED_GUIDES_04, ...PUBLISHED_BDSM_01, ...PUBLISHED_FITNESS_01
+ ...PUBLISHED_GUIDES_04, ...PUBLISHED_BDSM_01, ...PUBLISHED_FITNESS_01, ...PUBLISHED_CURRICULUM_01, ...PUBLISHED_CURRICULUM_02, ...PUBLISHED_CURRICULUM_03, ...PUBLISHED_CURRICULUM_04, ...PUBLISHED_CURRICULUM_05
 ];
 export const PROMPTS={
  gentle:['What has made you feel cared for lately?','What is one small thing you would like more of this week?','When do you feel most able to be yourself?','What kind of closeness feels welcome today?','What is something I might not realize you appreciate?','What would make an ordinary evening feel a little kinder?','Is there something you want me to understand without trying to fix it?','What is a good way for me to check in when you seem quiet?'],
